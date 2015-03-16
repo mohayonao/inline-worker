@@ -6,6 +6,17 @@
   "bugs": {
     "url": "https://github.com/mohayonao/inline-worker/issues"
   },
+  "devDependencies": {
+    "babel": "^4.7.12",
+    "browserify": "^9.0.3",
+    "espower-babel": "^1.4.0",
+    "isparta": "^2.2.0",
+    "jshint": "^2.6.3",
+    "jshint-stylish": "^1.0.1",
+    "mocha": "^2.2.1",
+    "power-assert": "^0.10.2",
+    "uglify-js": "^2.4.17"
+  },
   "files": [
     "package.json",
     "README.md",
