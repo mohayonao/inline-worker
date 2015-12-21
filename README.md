@@ -1,38 +1,28 @@
 # inline-worker
 [![Build Status](http://img.shields.io/travis/mohayonao/inline-worker.svg?style=flat-square)](https://travis-ci.org/mohayonao/inline-worker)
 [![NPM Version](http://img.shields.io/npm/v/inline-worker.svg?style=flat-square)](https://www.npmjs.org/package/inline-worker)
-[![Bower](http://img.shields.io/bower/v/inline-worker.svg?style=flat-square)](http://bower.io/search/?q=inline-worker)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://mohayonao.mit-license.org/)
 
-> JavaScript utility to create a WebWorker from a function
+> JavaScript utility to create a universal WebWorker from a function
 
 ## Installation
 
-npm:
-
 ```
-npm install inline-worker
+$ npm install inline-worker
 ```
 
-bower:
+## API
+### InlineWorker
 
-```
-bower install inline-worker
-```
+- `constructor(func: function, [ self: object ]): Worker | InlineWorker`
 
-downloads:
-
-- [inline-worker.js](https://raw.githubusercontent.com/mohayonao/inline-worker/master/build/inline-worker.js)
-- [inline-worker.min.js](https://raw.githubusercontent.com/mohayonao/inline-worker/master/build/inline-worker.min.js)
-
-## Usage
+## Example
 
 ```js
-var InlineWorker = require("inline-worker");
+const InlineWorker = require("inline-worker");
 
-var self = {};
-
-var worker = new InlineWorker(function() {
+let self = {};
+let worker = new InlineWorker(function(self) {
   self.onmessage = function(e) {
     postMessage(self.bark(e.data)); // (2) hello!!
   };
