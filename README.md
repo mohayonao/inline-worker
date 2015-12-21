@@ -14,27 +14,46 @@ $ npm install inline-worker
 ## API
 ### InlineWorker
 
-- `constructor(func: function, [ self: object ]): Worker`
+- `constructor(func: function, [ self: object ]): Worker | InlineWorker`
 
 ## Example
 
 ```js
 const InlineWorker = require("inline-worker");
 
+let self = {};
 let worker = new InlineWorker(function(self) {
   self.onmessage = function(e) {
-    console.log(e.data);
-    self.postMessage("good bye");
+    postMessage(self.bark(e.data)); // (2) hello!!
   };
-});
 
-worker.onmessage = (e) => {
-  console.log(e.data);
+  // worker internal function
+  self.bark = function(msg) {
+    return msg + "!!";
+  };
+}, self);
+
+worker.onmessage = function(e) {
+  console.log(e.data + "!!"); // (3) hello!!!!
 };
 
-worker.postMessage("hello");
-// → "hello"
-// → "good bye"
+worker.postMessage("hello"); // (1)
+```
+
+What is `worker` instance?
+
+```js
+if (global.window === global) {
+  assert(worker instanceof Worker); // in the borwser
+} else {
+  assert(worker instanceof InlineWorker); // in the node.js
+}
+```
+
+You can test worker internal functions via `self`.
+
+```js
+assert(self.bark("bye") === "bye!!");
 ```
 
 ## License
