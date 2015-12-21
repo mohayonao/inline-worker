@@ -1,7 +1,7 @@
 {
   "name": "inline-worker",
-  "description": "utility to create a WebWorker from a function",
-  "version": "0.1.0",
+  "description": "utility to create a universal WebWorker from a function",
+  "version": "1.0.0",
   "author": "Nao Yonamine <mohayonao@gmail.com>",
   "bugs": {
     "url": "https://github.com/mohayonao/inline-worker/issues"
@@ -19,7 +19,7 @@
     "worker"
   ],
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mohayonao/inline-worker.git"
