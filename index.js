@@ -25,9 +25,7 @@ function InlineWorker(func, self) {
   this.self = self;
   this.self.postMessage = postMessage;
 
-  setTimeout(function() {
-    func.call(self, self);
-  }, 0);
+  setTimeout(func.bind(self, self), 0);
 }
 
 InlineWorker.prototype.postMessage = function postMessage(data) {
